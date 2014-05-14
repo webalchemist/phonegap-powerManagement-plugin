@@ -1,7 +1,7 @@
 var powerManagement = {
   acquireWakeLock: function(callback, error) {
     try{
-      if(wakelocked === false && device.platform.match(/^android/gi)){
+      if(device.platform.match(/^android/gi)){
         cordova.exec(
           function(){
             if(typeof(callback) == "function"){
@@ -26,7 +26,7 @@ var powerManagement = {
   },
   releaseWakeLock: function(callback, error) {
     try {
-      if(wakelocked === true && device.platform.match(/^android/gi)){
+      if(device.platform.match(/^android/gi)){
         cordova.exec(
           function(){
             if(typeof(callback) == "function"){
