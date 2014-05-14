@@ -1,4 +1,4 @@
-cordova.define("org.apache.cordova.plugin.power-management.PowerManagement", function(require, exports, module) { var powerManagement = {
+var powerManagement = {
   acquireWakeLock: function(callback, error) {
     try{
       if(wakelocked === false && device.platform.match(/^android/gi)){
@@ -52,4 +52,4 @@ cordova.define("org.apache.cordova.plugin.power-management.PowerManagement", fun
 };
 
 module.exports = powerManagement;
-});
+
