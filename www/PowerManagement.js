@@ -1,5 +1,5 @@
-var powerManagement = {
-  acquireWakeLock: function(callback) {
+cordova.define("org.apache.cordova.plugin.power-management.PowerManagement", function(require, exports, module) { var powerManagement = {
+  acquireWakeLock: function(callback, error) {
     try{
       if(wakelocked === false && device.platform.match(/^android/gi)){
         cordova.exec(
@@ -9,18 +9,22 @@ var powerManagement = {
             }
           },
           function(err) {
-            // Do nothing....
+            if(typeof(error) == "function"){
+              error(err);
+            }
           },
-          "PowerManagement",
+          "PowerManagement", 
           "acquireWakeLock",
           []
         );
       }
     } catch(e){
-      // catch the error to prevent breakage, though we don't do anything
+	    if(typeof(error) == "function"){
+	      error(e);
+	    }
     }
   },
-  releaseWakeLock: function() {
+  releaseWakeLock: function(callback, error) {
     try {
       if(wakelocked === true && device.platform.match(/^android/gi)){
         cordova.exec(
@@ -30,7 +34,9 @@ var powerManagement = {
             }
           },
           function(err) {
-            // Do nothing....
+            if(typeof(error) == "function"){
+              error(err);
+            }
           },
           "PowerManagement",
           "releaseWakeLock",
@@ -38,9 +44,12 @@ var powerManagement = {
         );
       }
     } catch(e){
-     // catch the error to prevent breakage, though we don't do anything
-    }
+            if(typeof(error) == "function"){
+              error(e);
+            }
+    } 
   }
 };
 
 module.exports = powerManagement;
+});
