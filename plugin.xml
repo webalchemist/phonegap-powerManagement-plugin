@@ -15,6 +15,11 @@
 
     <!-- android -->
     <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PowerManagement">
+                <param name="android-package" value="org.apache.cordova.plugin.powermanagement.PowerManagement"/>
+            </feature>
+        </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.WAKE_LOCK" />
         </config-file>
